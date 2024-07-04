@@ -34,6 +34,8 @@ fun App(modifier: Modifier = Modifier) {
         }
         if (selectedTab == 1) {
             AppList()
+        } else {
+            TimerSelector()
         }
     }
 }
