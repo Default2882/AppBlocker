@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -37,47 +36,17 @@ import com.appblocker.ui.theme.AppBLockerTheme
 import kotlinx.coroutines.launch
 
 @Composable
-fun AppList(modifier: Modifier = Modifier) {
+fun AppList(
+    installedApplicationLabelList: List<AppRowData>,
+    modifier: Modifier = Modifier
+) {
     val TAG = "AppList";
-    var installedApplicationLabelList by remember {
-        mutableStateOf(listOf<AppRowData>())
-    }
-    val coroutineScope = rememberCoroutineScope()
-    val context = LocalContext.current
     var loadingProgress by remember {
         mutableStateOf(0f)
     }
-    val progressAnimation by animateFloatAsState(targetValue = loadingProgress)
 
-    LaunchedEffect(Unit) {
-        coroutineScope.launch {
-            val pm: PackageManager = context.packageManager
-            val applicationInfo = pm.getInstalledApplications(PackageManager.GET_META_DATA)
-            val totalNumberOfApplication = applicationInfo.size.toFloat()
-            installedApplicationLabelList = applicationInfo.mapIndexedNotNull { index, appInfo ->
-                loadingProgress = ((index + 1) / totalNumberOfApplication)
-//                Log.d(TAG, loadingProgress.toString())
-                AppRowData(
-                    label = pm.getApplicationLabel(appInfo).toString(),
-                    icon = pm.getApplicationIcon(appInfo)
-                )
-            }.sortedBy { it.label }
-        }
-    }
-
-    Log.d(TAG, installedApplicationLabelList.size.toString())
-    Log.d(TAG, loadingProgress.toString())
-
-    if (installedApplicationLabelList.size == 0) {
-        Box(contentAlignment = Alignment.Center, modifier = Modifier
-            .fillMaxSize(1f)) {
-            CircularProgressIndicator(
-                color = Color.Cyan,
-//                modifier = Modifier.padding(top = 20.dp),
-                progress = 1f
-            )
-            Text(text = "Loading Application list...", modifier = Modifier.padding(top = 64.dp))
-        }
+    if (installedApplicationLabelList.isEmpty()) {
+        ProgressIndicator(progress = loadingProgress)
     } else {
         LazyColumn {
             items(installedApplicationLabelList) {
@@ -88,6 +57,21 @@ fun AppList(modifier: Modifier = Modifier) {
 }
 
 data class AppRowData(val label: String, val icon: Drawable)
+
+@Composable
+fun ProgressIndicator(
+    progress: Float,
+    modifier: Modifier = Modifier
+) {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier
+        .fillMaxSize(1f)) {
+        CircularProgressIndicator(
+            color = Color.Cyan,
+            progress = progress
+        )
+        Text(text = "Loading Application list...", modifier = Modifier.padding(top = 64.dp))
+    }
+}
 
 @Composable
 fun AppRow(
@@ -115,6 +99,6 @@ fun AppRow(
 @Composable
 fun AppListPreview() {
     AppBLockerTheme {
-        AppList()
+        AppList(listOf())
     }
 }
