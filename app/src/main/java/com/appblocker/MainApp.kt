@@ -17,7 +17,6 @@ import com.appblocker.ui.theme.AppBLockerTheme
 
 @Composable
 fun App(
-    mainAppViewModel: MainAppViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     var selectedTab by remember {
@@ -38,7 +37,7 @@ fun App(
             }
         }
         if (selectedTab == 1) {
-            AppList(mainAppViewModel.getInstalledApplications())
+            AppList()
         } else {
             TimerSelector()
         }
