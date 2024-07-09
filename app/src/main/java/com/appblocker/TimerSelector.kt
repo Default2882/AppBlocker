@@ -68,7 +68,7 @@ fun TimerSelector(modifier: Modifier = Modifier) {
                         timePickerState = endTimePickerState
                     )
                 }
-            }   
+            }
         }
     }
 }
