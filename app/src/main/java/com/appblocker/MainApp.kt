@@ -22,7 +22,6 @@ fun App(
     var selectedTab by remember {
         mutableStateOf(0)
     }
-
     val titles = listOf("Timer", "App List")
 
     Column {
