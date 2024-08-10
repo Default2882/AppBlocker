@@ -1,0 +1,9 @@
+syntax = "proto3";
+package com.appblocker;
+
+import "google/protobuf/timestamp.proto";
+
+message AppName {
+  string appName = 1;
+  google.protobuf.Timestamp last_updated = 10;
+}
