@@ -62,6 +62,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.3")
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation("androidx.datastore:datastore-core:1.1.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
