@@ -36,15 +36,15 @@ val TAG = "AppList"
 
 @Composable
 fun AppList(
-    mainAppViewModel: MainAppViewModel = viewModel(),
+    applicationList: List<StateFlow<AppRowState>>,
+    onCheck: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var applicationList = mainAppViewModel.getInstalledApplications()
     LazyColumn {
         itemsIndexed(applicationList) {index, appRowData ->
             AppRow(
                 appRowData,
-                { mainAppViewModel.onCheck(index) }
+                { onCheck(index) }
             )
         }
     }

@@ -27,7 +27,9 @@ import java.util.Calendar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TimerSelector(modifier: Modifier = Modifier) {
+fun TimerSelector(
+    modifier: Modifier = Modifier
+) {
 
     val time = Calendar.getInstance()
     time.timeInMillis = System.currentTimeMillis()

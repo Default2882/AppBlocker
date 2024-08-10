@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import java.lang.Thread.State
 
 class MainAppViewModel(
     application: Application,
@@ -30,5 +31,13 @@ class MainAppViewModel(
     fun onCheck(index: Int) {
         _installedApplicationLabelList[index].update { currentState ->
             currentState.copy(checked = !currentState.checked) }
+    }
+
+    fun getSelectedApplicationList(): List<StateFlow<AppRowState>> {
+        return _installedApplicationLabelList.filter { appRowData -> appRowData.value.checked }
+    }
+
+    fun getSelectedApplicationListCount(): Int {
+        return getSelectedApplicationList().size
     }
 }
