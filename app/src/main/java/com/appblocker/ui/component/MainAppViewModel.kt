@@ -1,10 +1,11 @@
-package com.appblocker
+package com.appblocker.ui.component
 
 import android.app.Application
 import android.content.Context
 import androidx.datastore.dataStore
 import android.content.pm.PackageManager
 import androidx.lifecycle.AndroidViewModel
+import com.appblocker.AppNameSerializer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -23,12 +24,14 @@ class MainAppViewModel(
     private val _applicationInfo = _pm.getInstalledApplications(PackageManager.GET_META_DATA)
 
     private val _installedApplicationLabelList = _applicationInfo.mapIndexedNotNull { index, appInfo ->
-        MutableStateFlow(AppRowState(
+        MutableStateFlow(
+            AppRowState(
             label = _pm.getApplicationLabel(appInfo).toString(),
             icon = _pm.getApplicationIcon(appInfo),
             index = index,
             checked = false
-        ))
+        )
+        )
     }
 
     fun getInstalledApplications(): List<StateFlow<AppRowState>> {

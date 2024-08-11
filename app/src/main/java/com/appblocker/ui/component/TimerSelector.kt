@@ -1,6 +1,5 @@
-package com.appblocker
+package com.appblocker.ui.component
 
-import TimePickerDialog
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

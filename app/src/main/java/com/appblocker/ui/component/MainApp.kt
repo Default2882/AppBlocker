@@ -1,4 +1,4 @@
-package com.appblocker
+package com.appblocker.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Tab
