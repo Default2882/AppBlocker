@@ -1,16 +1,14 @@
-package com.appblocker
+package com.appblocker.message
 
-import android.content.Context
 import androidx.datastore.core.CorruptionException
-import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
-import com.appblocker.AppNameOuterClass.AppName
+import com.appblocker.AppListOuterClass.AppName
 import com.google.protobuf.InvalidProtocolBufferException
 import java.io.InputStream
 import java.io.OutputStream
 
 object AppNameSerializer : Serializer<AppName> {
-    override val defaultValue: AppName = AppName.getDefaultInstance()
+    override val defaultValue:  AppName = AppName.getDefaultInstance()
 
     override suspend fun readFrom(input: InputStream): AppName {
         try {

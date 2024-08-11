@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.datastore.dataStore
 import android.content.pm.PackageManager
 import androidx.lifecycle.AndroidViewModel
-import com.appblocker.AppNameSerializer
+import com.appblocker.message.AppNameSerializer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
