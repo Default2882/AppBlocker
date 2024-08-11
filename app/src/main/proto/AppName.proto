@@ -7,3 +7,7 @@ message AppName {
   string appName = 1;
   google.protobuf.Timestamp last_updated = 10;
 }
+
+message AppList {
+  repeated AppName appName = 1;
+}
