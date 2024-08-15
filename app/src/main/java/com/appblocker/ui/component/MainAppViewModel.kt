@@ -1,20 +1,12 @@
 package com.appblocker.ui.component
 
 import android.util.Log
-import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
 import com.appblocker.AppListOuterClass.AppList
 import com.appblocker.data.App
 import com.appblocker.data.AppListRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.runBlocking
 
 class MainAppViewModel(
     appListRepository: AppListRepository
