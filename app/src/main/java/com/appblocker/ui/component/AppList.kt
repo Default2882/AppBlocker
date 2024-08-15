@@ -25,17 +25,18 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 
 
 val TAG = "AppList"
 
 @Composable
 fun AppList(
-    applicationList: List<StateFlow<AppRowState>>,
+    applicationListFlow: Flow<List<AppRowState>>,
     onCheck: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val applicationList by applicationListFlow.collectAsState(initial = listOf<AppRowState>())
     LazyColumn {
         itemsIndexed(applicationList) {index, appRowData ->
             AppRow(
@@ -72,11 +73,11 @@ fun ProgressIndicator(
 
 @Composable
 fun AppRow(
-    appRowStateFlow: StateFlow<AppRowState>,
+    appRowState: AppRowState,
     onCheck: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val appRowState by appRowStateFlow.collectAsState()
+
     Row(
         modifier = Modifier
             .border(1.dp, Color.Black, RectangleShape)

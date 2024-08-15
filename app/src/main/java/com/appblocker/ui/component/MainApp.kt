@@ -10,14 +10,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.appblocker.data.AppListRepository
 import com.appblocker.ui.theme.AppBLockerTheme
 
 @Composable
 fun App(
-    mainAppViewModel: MainAppViewModel = viewModel(),
+    mainAppViewModel: MainAppViewModel,
     modifier: Modifier = Modifier
 ) {
     var selectedTab by remember {
@@ -51,6 +52,6 @@ fun App(
 @Composable
 fun AppPreview() {
     AppBLockerTheme {
-        App()
+        App(MainAppViewModel(AppListRepository.getInstance(LocalContext.current)))
     }
 }

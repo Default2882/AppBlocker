@@ -86,6 +86,7 @@ dependencies {
     implementation("com.google.protobuf:protobuf-kotlin-lite:4.27.3")
     implementation("com.google.protobuf:protobuf-javalite:4.27.3")
     implementation("com.google.protobuf:protobuf-gradle-plugin:0.9.4")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

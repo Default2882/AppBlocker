@@ -1,9 +1,10 @@
 package com.appblocker.message
 
+import android.content.Context
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
+import androidx.datastore.dataStore
 import com.appblocker.AppListOuterClass.AppList
-import com.appblocker.ui.component.App
 import com.google.protobuf.InvalidProtocolBufferException
 import java.io.InputStream
 import java.io.OutputStream
@@ -22,3 +23,8 @@ object AppListSerializer : Serializer<AppList> {
 
     override suspend fun writeTo(t: AppList, output: OutputStream) = t.writeTo(output)
 }
+
+val Context.appListDataStore by dataStore(
+    fileName = "appList.pb",
+    serializer = AppListSerializer
+)
